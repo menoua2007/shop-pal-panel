@@ -37,7 +37,7 @@ function CategoryPage() {
         <h1 className="text-2xl font-bold">{data?.cat?.name ?? "..."}</h1>
         <div className="flex gap-2 text-sm">
           {[["new", "جدیدترین"], ["cheap", "ارزان‌ترین"], ["expensive", "گران‌ترین"], ["discount", "بیشترین تخفیف"]].map(([k, l]) => (
-            <button key={k} onClick={() => setSort(k)} className={sort === k ? "font-bold text-primary" : "text-muted-foreground"}>{l}</button>
+            <button key={k} onClick={() => setSort(k!)} className={sort === k ? "font-bold text-primary" : "text-muted-foreground"}>{l}</button>
           ))}
         </div>
       </div>

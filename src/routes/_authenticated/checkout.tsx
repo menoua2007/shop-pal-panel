@@ -55,7 +55,7 @@ function Checkout() {
 
   const pay = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!/^09\d{9}$/.test(form.phone)) return toast.error("شماره موبایل معتبر نیست (مثال: 09121234567)");
+    if (!/^09\d{9}$/.test(form.phone)) { toast.error("شماره موبایل معتبر نیست (مثال: 09121234567)"); return; }
     setBusy(true);
     try {
       const r = await create({

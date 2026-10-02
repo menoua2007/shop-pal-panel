@@ -70,7 +70,7 @@ function ProductPage() {
       comment: comment.trim().slice(0, 1000),
       author_name: prof?.full_name || user.email?.split("@")[0] || "کاربر",
     });
-    if (error) return toast.error("ثبت نظر ناموفق بود");
+    if (error) { toast.error("ثبت نظر ناموفق بود"); return; }
     setComment("");
     toast.success("نظر شما ثبت شد");
     qc.invalidateQueries({ queryKey: ["reviews", id] });

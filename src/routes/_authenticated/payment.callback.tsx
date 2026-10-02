@@ -24,7 +24,7 @@ function Callback() {
   const s = Route.useSearch();
   const verify = useServerFn(verifyPayment);
   const { clear } = useCart();
-  const [res, setRes] = useState<{ ok: boolean; refId?: string | null; error?: string } | null>(null);
+  const [res, setRes] = useState<{ ok: boolean; refId?: string | null; error?: string | undefined } | null>(null);
   const ran = useRef(false);
 
   useEffect(() => {
