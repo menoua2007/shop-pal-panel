@@ -115,7 +115,7 @@ function Products() {
       category_id: edit.category_id || null, is_active: edit.is_active, specs,
     };
     const { error } = edit.id ? await supabase.from("products").update(row).eq("id", edit.id) : await supabase.from("products").insert(row);
-    if (error) return toast.error("ذخیره ناموفق بود");
+    if (error) { toast.error("ذخیره ناموفق بود"); return; }
     toast.success("ذخیره شد");
     setEdit(null);
     qc.invalidateQueries();
@@ -217,7 +217,7 @@ function Coupons() {
     const { error } = await supabase.from("coupons").insert({
       code: f.code.trim().toUpperCase(), percent: f.percent, max_discount: f.max_discount || null, expires_at: f.expires_at ? new Date(f.expires_at).toISOString() : null,
     });
-    if (error) return toast.error("ثبت ناموفق (شاید کد تکراری است)");
+    if (error) { toast.error("ثبت ناموفق (شاید کد تکراری است)"); return; }
     setF({ code: "", percent: 10, max_discount: 0, expires_at: "" });
     qc.invalidateQueries({ queryKey: ["admin-coupons"] });
   };
@@ -251,7 +251,7 @@ function Categories() {
   const { data } = useQuery({ queryKey: ["categories"], queryFn: async () => (await supabase.from("categories").select("*").order("sort")).data ?? [] });
   const add = async () => {
     const { error } = await supabase.from("categories").insert({ name, slug: slug.trim().toLowerCase(), sort: (data?.length ?? 0) + 1 });
-    if (error) return toast.error("ثبت ناموفق");
+    if (error) { toast.error("ثبت ناموفق"); return; }
     setName(""); setSlug("");
     qc.invalidateQueries({ queryKey: ["categories"] });
   };
